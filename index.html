@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    
+
+  </head>
+    
+  <body>
+  <!doctype html>
+
+<html lang="hi">
+
+<head>
+
+<meta charset="utf-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Rao Prime — Future Mode</title>
+
+<style>
+
+  :root{
+
+    --bg:#05060a; --panel:#0b1220; --muted:#9aa0a6; --accent:#00eaff; --accent-2:#6f42c1;
+
+    --text:#eaf6ff;
+
+  }
+
+  [data-theme="light"]{
+
+    --bg:#f6f8fb; --panel:#ffffff; --muted:#4b5563; --text:#071019;
+
+  }
+
+  *{box-sizing:border-box}
+
+  body{margin:0;font-family:Inter, "Segoe UI", Roboto, sans-serif;background:linear-gradient(90deg,#02040a,#071022);color:var(--text);min-height:100vh}
+
+  header{position:relative;padding:18px 18px 14px;display:flex;align-items:center;gap:12px;background:transparent}
+
+  .logo{position:absolute;left:12px;top:12px;display:flex;align-items:center;gap:8px}
+
+  .logo img{width:96px;height:44px;object-fit:cover;border-radius:8px;box-shadow:0 8px 30px rgba(0,0,0,0.6)}
+
+  .title{margin:0 auto;font-weight:700;color:var(--accent);font-size:20px;letter-spacing:0.6px}
+
+  .controls{position:absolute;right:12px;top:10px;display:flex;gap:8px;align-items:center}
+
+  .btn{background:transparent;color:var(--text);padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);cursor:pointer}
+
+  .small{padding:6px 8px;font-size:13px}
+
+  main{padding:18px}
+
+  .section{margin-bottom:20px}
+
+  h2{margin:6px 0 12px;font-size:18px;color:var(--accent)}
+
+  .row{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px}
+
+  .card{min-width:150px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:10px;padding:8px;border:1px solid rgba(255,255,255,0.03)}
+
+  .poster{width:100%;height:95px;border-radius:8px;object-fit:cover;margin-bottom:8px}
+
+  .meta{font-size:13px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+
+  .title-small{font-weight:600;font-size:14px;margin-bottom:6px}
+
+  .actions{display:flex;gap:6px}
+
+  .watch{background:linear-gradient(90deg,var(--accent-2),var(--accent));color:#000;padding:6px 8px;border-radius:6px;font-weight:700;cursor:pointer;border:none}
+
+  .download{background:transparent;border:1px solid var(--accent);color:var(--accent);padding:6px 8px;border-radius:6px;cursor:pointer}
+
+  footer{padding:18px;text-align:center;background:linear-gradient(180deg,#02030a,#021028);color:var(--muted);font-size:13px}
+
+  .splash{position:fixed;inset:0;background:radial-gradient(ellipse at center,#071428 0%,#000 70%);display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:9999}
+
+  .splash .glow{font-size:42px;color:var(--accent);font-weight:800;text-shadow:0 8px 40px rgba(0,234,255,0.15)}
+
+  .splash .sub{color:#9fbcd0;margin-top:8px}
+
+  .splash .holo{width:160px;height:160px;margin-top:18px;border-radius:50%;background:conic-gradient(rgba(0,234,255,0.06), rgba(111,66,193,0.06));box-shadow:0 18px 80px rgba(0,234,255,0.06), inset 0 -6px 18px rgba(111,66,193,0.03);animation:spin 8s linear infinite}
+
+  @keyframes spin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+
+  .splash .pulse{width:260px;height:260px;border-radius:50%;position:absolute;opacity:0.06;background:radial-gradient(circle, rgba(0,234,255,0.12), transparent 30%);animation:pulse 2.5s ease-out infinite}
+
+  @keyframes pulse {0%{transform:scale(.9);opacity:.06}50%{transform:scale(1.08);opacity:.12}100%{transform:scale(.9);opacity:.06}}
+
+  .blackout{position:fixed;inset:0;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;z-index:9998;flex-direction:column;display:none}
+
+  .blackout h1{font-size:36px;margin:0 0 8px;letter-spacing:1px}
+
+  .blackout p{color:#ccc;margin:0 0 12px}
+
+  @media (max-width:600px){
+
+    .splash .glow{font-size:28px}
+
+    .logo img{width:76px;height:34px}
+
+  }
+
+</style>
+
+</head>
+
+<body data-theme="dark">
+
+<div class="splash" id="splash">
+
+  <div class="pulse"></div>
+
+  <div class="glow">⚡ R A O — P R I M E ⚡</div>
+
+  <div class="sub">Future Mode — Streaming Engaged</div>
+
+  <div class="holo" aria-hidden="true"></div>
+
+  <audio id="splashAudio" src="assets/sci_fi_intro.mp3" preload="auto"></audio>
+
+</div>
+
+<div class="blackout" id="blackout">
+
+  <h1>🚫 BAS KAR BHAI!</h1>
+
+  <p>Yeh app sirf Boss ke liye. Tu zyada hukumat mat kar bhai!</p>
+
+</div>
+
+<header>
+
+  <div class="logo"><img src="assets/logo.png" alt="Rao Prime"></div>
+
+  <div class="title">Rao Prime — Future Mode</div>
+
+  <div class="controls">
+
+    <select id="lang" class="btn small" title="Language">
+
+      <option value="hi">Hindi</option>
+
+      <option value="en">English</option>
+
+      <option value="hin">Hinglish</option>
+
+    </select>
+
+    <button id="themeToggle" class="btn small">Theme</button>
+
+    <button id="adminBtn" class="btn small">Admin</button>
+
+  </div>
+
+</header>
+
+<main id="mainContent" style="opacity:0;transition:opacity .5s ease;">
+
+  <section class="section">
+
+    <h2>🎬 Trending Now</h2>
+
+    <div class="row" id="trending"></div>
+
+  </section>
+
+  <section class="section">
+
+    <h2>📺 Web Series Picks</h2>
+
+    <div class="row" id="webseries"></div>
+
+  </section>
+
+  <section class="section">
+
+    <h2>🎵 Top Songs</h2>
+
+    <div class="row" id="songs"></div>
+
+  </section>
+
+  <section class="section">
+
+    <h2>👑 Admin Panel</h2>
+
+    <p>Admin Console: <strong>https://your-admin-panel.example.com</strong></p>
+
+    <p>Username: <strong>Gulshan</strong> | Password: <strong>28102008</strong></p>
+
+    <p style="color:var(--muted)">Admin se hi content upload karein — yahan se aap videos, songs add aur premium lock karenge.</p>
+
+  </section>
+
+</main>
+
+<footer>
+
+  🇮🇳 Made in Bharat | Rao Prime — Boss Mode Enabled
+
+</footer>
+
+<script>
+
+const splash = document.getElementById('splash');
+
+const splashAudio = document.getElementById('splashAudio');
+
+const mainContent = document.getElementById('mainContent');
+
+function hideSplash(){
+
+  splash.style.display='none';
+
+  mainContent.style.opacity='1';
+
+}
+
+window.addEventListener('load', ()=>{
+
+  if(splashAudio && splashAudio.src){
+
+    splashAudio.play().catch(()=>{});
+
+  }
+
+  setTimeout(hideSplash, 2500);
+
+});
+
+document.getElementById('themeToggle').addEventListener('click', ()=>{
+
+  if(document.body.getAttribute('data-theme')==='light') document.body.setAttribute('data-theme','dark');
+
+  else document.body.setAttribute('data-theme','light');
+
+});
+
+document.getElementById('adminBtn').addEventListener('click', ()=>{
+
+  const url = prompt("Admin panel URL (leave blank to use default):","https://your-admin-panel.example.com");
+
+  if(url) window.open(url,'_blank');
+
+});
+
+// EMBEDDED MEDIA DATA
+
+const mediaData = {
+
+  "movies":[
+
+    {"file":"assets/movies/movie1.mp4","title":"Avengers: Endgame","quality":"1080p","rating":"9.0","poster":"assets/posters/movie1.jpg"},
+
+    {"file":"assets/movies/movie2.mp4","title":"Inception","quality":"1080p","rating":"8.8","poster":"assets/posters/movie2.jpg"},
+
+    {"file":"assets/movies/movie3.mp4","title":"Spider-Man: No Way Home","quality":"1080p","rating":"8.7","poster":"assets/posters/movie3.jpg"},
+
+    {"file":"assets/movies/movie4.mp4","title":"Interstellar","quality":"1080p","rating":"8.6","poster":"assets/posters/movie4.jpg"},
+
+    {"file":"assets/movies/movie5.mp4","title":"The Dark Knight","quality":"1080p","rating":"9.0","poster":"assets/posters/movie5.jpg"},
+
+    {"file":"assets/movies/movie6.mp4","title":"Titanic","quality":"1080p","rating":"7.8","poster":"assets/posters/movie6.jpg"},
+
+    {"file":"assets/movies/movie7.mp4","title":"The Matrix","quality":"1080p","rating":"8.7","poster":"assets/posters/movie7.jpg"},
+
+    {"file":"assets/movies/movie8.mp4","title":"Avatar","quality":"1080p","rating":"7.9","poster":"assets/posters/movie8.jpg"},
+
+    {"file":"assets/movies/movie9.mp4","title":"Joker","quality":"1080p","rating":"8.5","poster":"assets/posters/movie9.jpg"},
+
+    {"file":"assets/movies/movie10.mp4","title":"Guardians of the Galaxy","quality":"1080p","rating":"8.0","poster":"assets/posters/movie10.jpg"},
+
+    {"file":"assets/movies/movie11.mp4","title":"Black Panther","quality":"1080p","rating":"7.8","poster":"assets/posters/movie11.jpg"},
+
+    {"file":"assets/movies/movie12.mp4","title":"Doctor Strange","quality":"1080p","rating":"7.9","poster":"assets/posters/movie12.jpg"}
+
+  ],
+
+  "webseries":[
+
+    {"file":"assets/webseries/series1.mp4","title":"Sacred Games","quality":"1080p","rating":"8.5","poster":"assets/posters/series1.jpg"}
+
+  ],
+
+  "songs":[
+
+    {"file":"assets/songs/song1.mp3","title":"Kesariya","quality":"320kbps","rating":"9.0","poster":"assets/posters/song1.jpg"}
+
+  ]
+
+};
+
+function populateSection(arr, containerId, isAudio=false){
+
+  const container = document.getElementById(containerId);
+
+  container.innerHTML='';
+
+  arr.forEach(item=>{
+
+    const card=document.createElement('div'); card.className='card';
+
+    const img=document.createElement('img'); img.className='poster'; img.src=item.poster||'assets/poster_placeholder.png';
+
+    card.appendChild(img);
+
+    const t=document.createElement('div'); t.className='title-small'; t.textContent=item.title||item.file;
+
+    card.appendChild(t);
+
+    const meta=document.createElement('div'); meta.className='meta';
+
+    meta.innerHTML=`<span>${item.quality||''}</span><span style="font-weight:700">${item.rating||''}</span>`;
+
+    card.appendChild(meta);
+
+    const spacer=document.createElement('div'); spacer.style.height='8px'; card.appendChild(spacer);
+
+    const actions=document.createElement('div'); actions.className='actions';
+
+    const watchBtn=document.createElement('button'); watchBtn.className='watch'; watchBtn.textContent='▶ Watch';
+
+    watchBtn.onclick=()=>playMedia(item,isAudio);
+
+    actions.appendChild(watchBtn);
+
+    const downBtn=document.createElement('button'); downBtn.className='download'; downBtn.textContent='⬇ Download';
+
+    downBtn.onclick=()=>downloadMedia(item);
+
+    actions.appendChild(downBtn);
+
+    card.appendChild(actions);
+
+    container.appendChild(card);
+
+  });
+
+}
+
+function playMedia(item,isAudio){
+
+  const url=item.file||'';
+
+  if(!url){ alert('File not specified.'); return; }
+
+  const win=window.open('','_blank','width=800,height=600');
+
+  if(isAudio){
+
+    win.document.write(`<title>${item.title}</title><body style="background:#000;color:#fff;font-family:sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh"><h2>${item.title}</h2><audio controls autoplay style="width:90%"><source src="${url}"></audio></body>`);
+
+  }else{
+
+    win.document.write(`<title>${item.title}</title><body style="margin:0;background:#000"><video controls autoplay style="width:100%;height:100%" src="${url}"></video></body>`);
+
+  }
+
+}
+
+function downloadMedia(item){
+
+  const url=item.file||'';
+
+  if(!url){ alert('Download link missing.'); return; }
+
+  const a=document.createElement('a'); a.href=url; a.download=''; document.body.appendChild(a); a.click(); a.remove();
+
+}
+
+window.addEventListener('load', ()=>{
+
+  populateSection(mediaData.movies,'trending',false);
+
+  populateSection(mediaData.webseries,'webseries',false);
+
+  populateSection(mediaData.songs,'songs',true);
+
+});
+
+</script>
+
+</body>
+
+</html>
+    
+  </body>
+  
+</html>
